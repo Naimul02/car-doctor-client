@@ -1,44 +1,42 @@
-import React from 'react';
+const BookingsRow = ({ booking , handleDelete }) => {
+  const { date, service, price, img, _id } = booking;
 
-const BookingsRow = ({booking}) => {
-  const { date , service , price , img} = booking
+ 
   return (
-    <div className="overflow-x-auto">
-    <table className="table">
-      
-      <tbody>
-        {/* row 1 */}
-        <tr>
-          <th>
-            <label>
-              <input type="checkbox" className="checkbox" />
-            </label>
-          </th>
-          <td>
-          <div className="avatar">
-                <div className="rounded w-24 h-24">
-                  {img && <img src={img} />}
-                </div>
-              </div>
-          </td>
-          <td>
-           {
-            service
-           }
-          </td>
-          <td>{date}</td>
-          <td>${price}</td>
-          <th>
-            <button className="btn btn-ghost btn-xs">details</button>
-          </th>
-        </tr>
-      
-       
-      </tbody>
-     
-      
-    </table>
-  </div>
+    <tr>
+      <th>
+        <button
+          className="btn btn-sm btn-circle"
+          onClick={() => handleDelete(_id)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </th>
+      <td>
+        <div className="avatar">
+          <div className="rounded w-24 h-24">{img && <img src={img} />}</div>
+        </div>
+      </td>
+      <td>{service}</td>
+      <td>{date}</td>
+      <td>${price}</td>
+      <th>
+        <button className="btn btn-ghost btn-xs">details</button>
+      </th>
+    </tr>
   );
 };
 
