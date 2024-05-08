@@ -1,21 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import BookingsRow from "./BookingsRow";
-import axios from "axios";
+// import axios from "axios";
 const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
   const url = `http://localhost:4000/bookings?email=${user?.email}`;
   useEffect(() => {
-    axios.get(url, { withCredentials: true }).then((res) => {
-      setBookings(res.data);
-    });
-    // fetch(url)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     setBookings(data);
-    //   });
+    // axios.get(url, { withCredentials: true }).then((res) => {
+    //   setBookings(res.data);
+    // });
+    fetch(url, { credentials: "include" })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setBookings(data);
+      });
   }, [url]);
 
   const handleDelete = (id) => {
