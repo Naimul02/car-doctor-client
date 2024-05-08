@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -12,8 +16,8 @@ const Login = () => {
     console.log(email, password);
     signIn(email, password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
       })
       .catch((error) => {
         console.error(error.message);
